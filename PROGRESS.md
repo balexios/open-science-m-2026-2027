@@ -1678,3 +1678,35 @@ motivation; official policy documents remain preferable for government targets.
   is superseded here by his explicit preference.
 - Recompiled successfully (7 pages, unchanged). Summary subsection complete
   again pending final review.
+
+## Research topic: smoother transition between paragraph 1 and 2 (2026-09-23)
+
+- Alexios flagged feedback that the transition from the EU/Dutch motivation
+  paragraph (ending "...motivating practical ways to retrofit
+  quantum-resistant protection.") to the communication-methods paragraph
+  (starting "Applications can communicate using various methods...") was
+  abrupt.
+- Added a bridging sentence at the start of paragraph 2: "Retrofitting this
+  protection requires identifying every point at which applications
+  exchange information." -- ties back to paragraph 1's closing "retrofit"
+  language and motivates why communication methods/paths are discussed next.
+- Recompiled the full pdflatex/bibtex/pdflatex/pdflatex cycle: no undefined
+  citations; builds cleanly (7 pages).
+
+## Figure PDF regenerated from re-exported SVG (2026-09-23)
+
+- Alexios asked how to create a PDF from an SVG in figures/. Found
+  `figures/communication.drawio.svg` had been freshly re-exported from
+  draw.io today (14:08), newer than the existing `communication.pdf`
+  (from the 12th) -- so the PDF was stale.
+- Reused the established workflow: stripped draw.io's `light-dark()` and
+  `var(--ge-adaptive-bg, ...)` CSS to their light-mode values (removed the
+  dead `@supports` feature-detection block, replaced `var(--ge-adaptive-bg,
+  X)` with `X`, and `light-dark(A, B)` with `A`, via a small Python script
+  handling nested parens for `rgb(...)` args), then ran `rsvg-convert -f pdf
+  -o communication.pdf communication.drawio.svg`.
+- Recompiled the main document: builds cleanly (7 pages), figure renders
+  correctly.
+- Recipe for future re-exports, restated for reference: any new SVG export
+  from draw.io needs the same light-dark()/var() stripping before
+  rsvg-convert can render it correctly (resvg has the same limitation).

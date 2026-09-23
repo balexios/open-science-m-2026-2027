@@ -141,7 +141,7 @@ The transition to quantum-resistant cryptography is an urgent European and Dutch
 
 \medskip
 
-Applications can communicate using various methods: sockets, shared memory, pipes, and files, as illustrated in Figure~\ref{fig:communication}. For communication across different machines, applications use sockets, which create a communication channel between the different hosts; both ends of the communication then use system calls, requests that an application makes to the operating system kernel, to send and receive data through this channel. Once applications reside on the same physical machine, they can also use sockets, or other system call-based techniques such as pipes and files, to communicate with each other. However, shared memory is the dominant communication method on the same machine, owing to its efficiency: it only requires memory accesses, whereas system call-based techniques are used only as a backup or by legacy applications~\cite{Volckaert2016ReMon}.
+Retrofitting this protection requires identifying every point at which applications exchange information. Applications can communicate using various methods: sockets, shared memory, pipes, and files, as illustrated in Figure~\ref{fig:communication}. For communication across different machines, applications use sockets, which create a communication channel between the different hosts; both ends of the communication then use system calls, requests that an application makes to the operating system kernel, to send and receive data through this channel. Once applications reside on the same physical machine, they can also use sockets, or other system call-based techniques such as pipes and files, to communicate with each other. However, shared memory is the dominant communication method on the same machine, owing to its efficiency: it only requires memory accesses, whereas system call-based techniques are used only as a backup or by legacy applications~\cite{Volckaert2016ReMon}.
 
 \medskip
 
@@ -149,7 +149,7 @@ Rewriting applications to support quantum-resistant communication is, of course,
 
 \medskip
 
-Existing solutions provide only partial answers to this challenge. Security gateways act as intermediaries that wrap an application's existing network connections in a protective tunnel, for instance using TLS, without requiring any changes to the application itself~\cite{Durumeric2017HTTPSInterception,Stunnel2026Manual}. However, they do not encrypt the segment between the application and the gateway, in either direction, since this segment is typically assumed to run over a trusted local network, and, operating purely at the network level, they do not cover local communication on the same machine, such as shared memory, pipes, and files. IPsec protects network traffic at the IP layer by authenticating and encrypting packets exchanged between hosts~\cite{Kent2005RFC4301}, but its inherent complexity has limited interoperability across implementations~\cite{Pepelnjak2013IPsecComplexity}, and it requires a compatible implementation and sufficient configuration privileges at both communicating endpoints, which is not available everywhere and makes adoption challenging in practice; like security gateways, it also does not cover local communication, including shared memory, pipes, and files. VM-based solutions run applications inside confidential virtual machines and can, in principle, protect both local communication, including shared memory within the virtual machine boundary, and network communication, for example by automatically wrapping traffic in mutual TLS~\cite{Misono2024ConfidentialVMs,EdgelessContrast2026}. However, such solutions typically require specialized confidential-computing hardware or changes to how applications are deployed, and the added virtualization, attestation, and encryption layers introduce significant performance overhead.
+Existing solutions provide only partial answers to this challenge. Security gateways act as intermediaries that wrap an application's existing network connections in a protective tunnel, for instance using TLS, without requiring any changes to the application itself~\cite{Durumeric2017HTTPSInterception,Stunnel2026Manual}. However, they do not encrypt the segment between the application and the gateway, in either direction, since this segment is typically assumed to run over a trusted local network, and, operating purely at the network level, they do not cover local communication on the same machine, such as shared memory, pipes, and files. IPsec protects network traffic at the IP layer by authenticating and encrypting packets exchanged between hosts~\cite{Kent2005RFC4301}, but its inherent complexity has limited interoperability across implementations~\cite{Pepelnjak2013IPsecComplexity}, and it requires a compatible implementation and sufficient configuration privileges at both communicating endpoints, which is not available everywhere and makes adoption challenging in practice; like security gateways, it also does not cover local communication, including shared memory, pipes, and files. Finally, VM-based solutions run applications inside confidential virtual machines and can, in principle, protect both local communication, including shared memory within the virtual machine boundary, and network communication, for example by automatically wrapping traffic in mutual TLS~\cite{Misono2024ConfidentialVMs,EdgelessContrast2026}. However, such solutions typically require specialized confidential-computing hardware or changes to how applications are deployed, and the added virtualization, attestation, and encryption layers introduce significant performance overhead.
 
 \medskip
 
@@ -170,14 +170,6 @@ On-TRAQ is therefore guided by a central research question:
 \begin{center}
 \textit{``Can we transparently retrofit quantum-resistant communication security \\ into existing applications using an interposition-based approach?''}
 \end{center}
-
-\av{the comments below may be for the approach but we will see}
-
-\av{na valeis se kedriki thesi to diagramma pou na min afinei amfivolia gia to pou tha einai i lysi sou}
-
-\av{Hybrid blah blah approach … for mgiration according to Kostas}
-
-\av{Start of initialization of connection or shared memory we make the new layer …}
 
 % Table commented out at Alexios's request, kept for reference.
 \iffalse
@@ -205,6 +197,16 @@ VM-based solutions & Yes & Yes & Virtualization cost, platform-specific hardware
 % Describe which methods and techniques will be used in the proposed research and discuss their applicability and accessibility. Include a detailed work plan and indicate the duration of the proposed research.
 
 \av{Hardware and binary rewriting agnostic ...}
+
+\av{table with drawbacks of other solutions and ours ...}
+
+\av{the comments below may be for the approach but we will see}
+
+\av{na valeis se kedriki thesi to diagramma pou na min afinei amfivolia gia to pou tha einai i lysi sou}
+
+\av{Hybrid blah blah approach … for mgiration according to Kostas}
+
+\av{Start of initialization of connection or shared memory we make the new layer …}
 
 \subsection{Justification}
 % Discuss the choice for the type of personnel (PhD or post-doc) and possibly non-scientific staff. Refrain from giving the name of the intended personnel in so far as you already have a candidate in mind.
