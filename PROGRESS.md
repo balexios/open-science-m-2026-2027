@@ -1,6 +1,6 @@
 # NWO Open Competition ENW-M 2026-2027 — Progress Log
 
-Last updated: 2026-09-12
+Last updated: 2026-09-23
 
 ## Fresh start
 
@@ -1376,3 +1376,305 @@ motivation; official policy documents remain preferable for government targets.
   communication security into existing applications using an
   interposition-based approach?" Recompiled successfully; renders as two
   balanced centered lines.
+
+## Abstract opening question reworded (2026-09-23)
+
+- Alexios proposed rewording the abstract's embedded opening question to
+  "How can existing applications gain quantum-resistant communication with
+  minimal changes?" — more direct than the previous "acquire quantum-resistant
+  communication without extensive changes to their implementation".
+- Updated in place, keeping the lead-in clause ("The transition to
+  post-quantum cryptography presents a challenge that extends beyond
+  replacing cryptographic algorithms:"), which was not discussed for removal.
+- Recompiled successfully (7 pages, unchanged).
+
+## Abstract: assertive "We propose On-TRAQ" opener (2026-09-23)
+
+- Alexios flagged two abstract weaknesses: no plain "On-TRAQ is..." statement,
+  and "investigates whether ... can provide" hedges on the core mechanism.
+- Replaced the two sentences "On-TRAQ investigates whether interposition on
+  system calls and shared memory accesses can provide a transparent
+  foundation for this transition. The project will develop a layer that
+  mediates application communication and applies quantum-resistant
+  protection without requiring application source-code modifications." with
+  one declarative sentence: "We propose On-TRAQ, a systems approach to
+  retrofitting quantum-resistant communication security into existing
+  applications through interposition on system calls and shared memory
+  accesses, without requiring application source-code modifications."
+- This is the abstract's first first-person ("we") usage; rest of the
+  abstract remains third-person ("the project will...", "On-TRAQ aims to...").
+  Flagged to Alexios as a deliberate, common grant-abstract pattern, not
+  reconciled further since he confirmed this wording.
+- Recompiled successfully (7 pages, unchanged).
+
+## Summary opening sentence strengthened (2026-09-23)
+
+- Alexios's cryptographer friend suggested changing "could" to "will" and
+  strengthening "some of" toward crucial/critical framing in the Summary's
+  first sentence.
+- Changed "Future quantum computers could break some of the cryptographic
+  methods used today to protect digital communication." to "Future quantum
+  computers will break critical cryptographic methods used today to protect
+  digital communication." — dropped "some of" entirely rather than inserting
+  "critical" alongside it, since keeping "some of" would still read as
+  softened. Defensible: the algorithmic result (quantum computers breaking
+  RSA/ECC via Shor's algorithm) is settled, so the uncertainty is about
+  timeline, not outcome, matching the "will break" framing.
+- Recompiled successfully (7 pages, unchanged).
+
+## Summary closing sentence strengthened (2026-09-23)
+
+- Alexios flagged the Summary's closing sentence as weak. Changed "The aim
+  is to help organizations prepare their existing software for the quantum
+  era while reducing the need to rewrite applications." to "On-TRAQ will
+  help organizations prepare their existing software for the quantum era
+  without rewriting their applications." — dropped the "The aim is to"
+  framing, made On-TRAQ the subject again (bookending the paragraph), and
+  switched "reducing the need to rewrite" to "without rewriting", matching
+  the stronger "without requiring changes to the applications' source code"
+  claim already stated mid-paragraph.
+- Recompiled successfully (7 pages, unchanged). Summary subsection is now
+  fully strengthened per Alexios's and his cryptographer friend's feedback.
+
+## Summary closing sentence mirrored to abstract's ending (2026-09-23)
+
+- Alexios asked for the Summary's closing sentence to mirror the abstract's
+  ending structure ("By separating communication security from application
+  implementation, On-TRAQ aims to provide a practical migration path for
+  existing software into the quantum era.").
+- Replaced the previous closing sentence ("On-TRAQ will help organizations
+  prepare their existing software for the quantum era without rewriting
+  their applications.") with "By adding this protection separately from the
+  applications themselves, On-TRAQ will give organizations a practical way
+  to move their existing software into the quantum era." — non-specialist
+  translation of the same "separating X" + "practical migration path"
+  structure, kept assertive ("will give", not "aims to give"). The dropped
+  "without rewriting" claim is already covered earlier in the same paragraph.
+- Flagged to Alexios (not yet actioned): the abstract's own closing still
+  reads "On-TRAQ aims to provide a practical migration path...", the same
+  hedge word ("aims to") stripped from the Summary twice this session —
+  worth reconciling for consistency if he wants the abstract's ending
+  tightened too.
+- Recompiled successfully (7 pages, unchanged).
+
+## Summary: "partial answers" replaced with "partial protection" (2026-09-23)
+
+- Alexios's feedback flagged "Existing solutions provide only partial
+  answers to protecting these different exchanges without changing the
+  applications themselves." as unclear ("answers" is vague, and "answers to
+  protecting" is awkward grammar); Alexios agreed.
+- Changed "partial answers to protecting these different exchanges" to
+  "partial protection for these different exchanges". Fixes both the vague
+  wording and the awkward grammar in one swap.
+- Recompiled successfully (7 pages, unchanged). Note: the abstract has a
+  similarly-worded but grammatically cleaner sentence ("provide only
+  partial answers to the challenge of transparently protecting application
+  communication..."), left unchanged since feedback was specific to the
+  Summary and the abstract's phrasing is not grammatically awkward.
+
+## Summary: "protection" ambiguity fixed by separating coverage from protection (2026-09-23)
+
+- Alexios clarified the earlier feedback: the real issue is "protection" is
+  used for two different things — the new quantum-resistant layer On-TRAQ
+  adds (introduced in "bring new protection to existing software") and,
+  confusingly, the same word for existing solutions' partial coverage in the
+  next-but-one sentence, making "protection" read as if existing solutions
+  already provide the new quantum-resistant layer, just partially.
+- Changed "Existing solutions provide only partial protection for these
+  different exchanges without changing the applications themselves." to
+  "Existing solutions cover only some of these exchanges, without changing
+  the applications themselves." — drops "protection" from this sentence,
+  using "cover"/"exchanges" instead (a coverage-gap point, not a
+  protection-strength point). "Protection" now consistently refers only to
+  On-TRAQ's new layer throughout the rest of the paragraph; "this
+  protection" in the following sentence still refers back cleanly to
+  "bring new protection to existing software" two sentences earlier.
+- Recompiled successfully (7 pages, unchanged).
+
+## Summary: "protection" replaced with "cryptographic methods" as the driving noun (2026-09-23)
+
+- Alexios asked to change "bring new protection to existing software" to
+  "bring new cryptographic methods to existing software" — echoing sentence
+  1's "cryptographic methods used today" (old methods break -> need new
+  ones).
+- Updated sentence 2 accordingly. Also updated the downstream reference in
+  sentence 5 ("On-TRAQ will investigate a way to add this protection by
+  placing a security layer...") to "add these methods", so it still points
+  to a real antecedent (the new cryptographic methods) rather than reusing
+  "protection" before that word is properly introduced. "Protection" is now
+  first introduced fresh in sentence 6 ("This layer will apply protection
+  designed to resist attacks by quantum computers...") as the layer's
+  effect, and stays consistent through sentences 7-8.
+- Recompiled successfully (7 pages, unchanged).
+
+## Summary restructured: rewriting-infeasibility and existing-solutions-limitations added and reordered (2026-09-23)
+
+- Alexios dictated a new flow for the Summary paragraph: motivation ->
+  new cryptographic methods needed -> how applications exchange information
+  -> applying these new methods via a security layer -> (new) rewriting
+  applications directly is often difficult/costly and sometimes infeasible
+  (e.g., no source-code access) -> (moved/reworded) existing solutions that
+  retrofit this protection have several known limitations -> project's
+  evaluation goals -> closing practical-migration-path sentence.
+- Trimmed the ", which may be difficult or costly to modify" tail from the
+  "new cryptographic methods" sentence (now developed into its own fuller
+  sentence later).
+- Moved and reworded the old "Existing solutions cover only some of these
+  exchanges..." sentence to after the new rewriting-infeasibility sentence,
+  now: "Existing solutions to retrofit this protection into existing
+  software have several known limitations." -- introduces "retrofit" in the
+  Summary for the first time, echoing the abstract's "retrofitting" and the
+  title. Kept generic/non-specialist altitude (no enumerated limitations),
+  consistent with the Summary's established simpler register vs. the peer-
+  level Research topic section.
+- Added new sentence: "Rewriting applications directly to add this
+  protection is often difficult or costly, and sometimes not even feasible
+  -- for example, when there is no access to the original source code."
+- Recompiled successfully (7 pages, unchanged). Summary subsection is
+  considered complete again pending Alexios's review.
+
+## "Transparently" added before "retrofit" in Summary (2026-09-23)
+
+- Alexios asked to add "transparently" before "retrofit" in "Existing
+  solutions to retrofit this protection into existing software have
+  several known limitations." Now reads "Existing solutions to
+  transparently retrofit this protection into existing software have
+  several known limitations." -- echoes the title's throughline term.
+- Recompiled successfully (7 pages, unchanged).
+
+## Summary: "On-TRAQ is an approach that..." added (2026-09-23)
+
+- Alexios noted the Summary still never states what On-TRAQ is (same gap
+  fixed in the abstract earlier), and that "approach" alone is enough here
+  (no need for "systems approach" or further qualifiers, unlike the abstract).
+- Changed "On-TRAQ will investigate a way to add these methods by placing a
+  security layer at the points where applications exchange information." to
+  "On-TRAQ is an approach that will add these methods by placing a security
+  layer at the points where applications exchange information." Kept "will
+  add" (future) rather than "adds" (present) to stay consistent with the
+  rest of the paragraph's future tense; only the definitional "is an
+  approach" clause is present tense.
+- Recompiled successfully (7 pages, unchanged).
+
+## Summary trimmed by Alexios; "protection" antecedent fixed again (2026-09-23)
+
+- Alexios manually edited the .tex file directly, trimming the Summary down
+  to its first five sentences (motivation, need for new cryptographic
+  methods, how applications exchange information, rewriting-infeasibility,
+  existing-solutions-limitations) -- removed the "On-TRAQ is an approach
+  that will add these methods..." sentence, the security-layer description,
+  the evaluation-goals sentence, and the closing practical-migration-path
+  sentence. Treated as the current intentional baseline, not reverted.
+- Alexios then flagged that within this trimmed version, "this protection"
+  (used twice: rewriting-infeasibility and existing-solutions-limitations
+  sentences) has no antecedent anymore, since the sentence that used to
+  introduce "protection" via the security layer was removed. The only
+  established noun at that point is "new cryptographic methods" (sentence 2).
+- Fixed by replacing both instances of "this protection" with "these
+  methods", matching the actual antecedent present in the paragraph.
+- Recompiled successfully (7 pages, unchanged). Current full Summary text:
+  motivation -> new cryptographic methods needed -> how applications
+  exchange information -> rewriting-infeasibility (no source-code access
+  example) -> existing-solutions-limitations (transparently retrofit).
+  Summary subsection is shorter now and likely still being reworked/rebuilt
+  by Alexios; not yet marked complete.
+
+## Summary continued: rewriting vs. transparent retrofitting (2026-09-23)
+
+- Alexios manually trimmed the Summary further on disk: removed the
+  "Applications also exchange information..." sentence (per his note "do
+  not care about local and remote communication" -- this detail is dropped
+  from the Summary going forward) and changed "cryptographic methods" to
+  "cryptographic techniques" in the second sentence.
+- Alexios then dictated the next two sentences: "one way is to rewrite
+  applications which is not always possible" and "transparently retrofitting
+  is challenging and current solutions have several known limitations."
+  Drafted and added: "One way to add these techniques is to rewrite the
+  applications directly, but this is not always possible or practical:
+  existing software is not always available with its original source code,
+  and even when it is, rewriting can be difficult and costly. Transparently
+  retrofitting these techniques into existing software is challenging, and
+  current solutions have several known limitations." The "One way..."
+  framing sets up an implicit contrast with On-TRAQ's own transparent-
+  retrofit approach, to be introduced in a later sentence.
+- Recompiled successfully (7 pages, unchanged). Current full Summary:
+  motivation -> new cryptographic techniques needed -> rewriting directly is
+  one way but often infeasible/costly -> transparent retrofitting is
+  challenging and current solutions have limitations. Still missing:
+  On-TRAQ's own approach/definition, evaluation goals, and closing sentence
+  (all removed in Alexios's earlier trim); Summary not yet complete.
+
+## "On the other hand" added before transparent retrofitting (2026-09-23)
+
+- Alexios asked to add "on the other hand" before the transparent-
+  retrofitting sentence, making the contrast with "One way is to rewrite
+  the applications directly..." explicit rather than implicit.
+- Now reads: "On the other hand, transparently retrofitting these
+  techniques into existing software is challenging, and current solutions
+  have several known limitations."
+- Recompiled successfully (7 pages, unchanged).
+
+## Summary: On-TRAQ description rewritten without "layer"/"protection" (2026-09-23)
+
+- Alexios manually added back "On-TRAQ is an approach that will add these
+  methods by placing a security layer at the points where applications
+  exchange information. This layer will apply protection designed to
+  resist attacks by quantum computers, covering communication both within
+  and across computers without requiring changes to the applications'
+  source code." as a separate paragraph, then asked to merge it into the
+  same paragraph and rewrite avoiding the words "layer" and "protection",
+  as two explicit steps: (1) identify all the points where applications
+  exchange information, (2) apply the required cryptographic operations
+  on the fly.
+- Replaced with: "On-TRAQ is an approach that will first identify all the
+  points where applications exchange information, whether within or across
+  computers. It will then apply, on the fly, the cryptographic operations
+  needed to secure this information against attacks by quantum computers,
+  without requiring changes to the applications' source code." Merged into
+  a single paragraph (removed the blank line/paragraph break).
+- Recompiled successfully (7 pages, unchanged). Current full Summary:
+  motivation -> new cryptographic techniques needed -> rewriting is one way
+  but often infeasible/costly -> transparent retrofitting is challenging and
+  current solutions have limitations -> On-TRAQ's two-step approach (identify
+  exchange points, then apply crypto operations on the fly). Still missing:
+  evaluation goals and closing sentence (removed in Alexios's earlier trim).
+
+## Summary: closing sentence on usability/performance goal added (2026-09-23)
+
+- Alexios asked for a closing sentence stating the project's goal is
+  usability and performance, aiming to provide a viable migration solution
+  for organizations.
+- Added: "The project will focus on usability and performance, aiming to
+  provide organizations with a viable solution for migrating their software
+  into the quantum era." Kept future tense to match the two preceding
+  sentences; ended with "into the quantum era" to match phrasing used
+  elsewhere in the abstract/summary.
+- Recompiled successfully (7 pages, unchanged). Summary subsection is now
+  considered complete again: motivation -> new cryptographic techniques
+  needed -> rewriting is one way but often infeasible/costly -> transparent
+  retrofitting is challenging and current solutions have limitations ->
+  On-TRAQ's two-step approach (identify exchange points, apply crypto
+  operations on the fly) -> closing usability/performance/migration goal.
+  Pending Alexios's final review.
+
+## Summary: closing sentence expanded (security guarantees + adoption barriers) (2026-09-23)
+
+- Alexios asked to expand the closing sentence: mention security guarantees
+  alongside usability/performance, explain usability/performance as typical
+  adoption barriers, and close with "All in all, On-TRAQ aims to provide a
+  viable solution for organizations...".
+- Replaced "The project will focus on usability and performance, aiming to
+  provide organizations with a viable solution for migrating their software
+  into the quantum era." with "In addition to the security guarantees of
+  the solution, this project will also focus on usability and performance,
+  since both are typically barriers to adoption. All in all, On-TRAQ aims
+  to provide a viable solution for organizations that want to migrate their
+  software into the quantum era." Fixed Alexios's "Except for" (reads as
+  excluding) to "In addition to" (the intended meaning); fixed "On-Traw"/
+  "biable" typos from his dictation.
+- Note: this reintroduces "aims to provide" (present tense), matching the
+  abstract's own still-unchanged closing wording -- Alexios's own dictation
+  used this phrasing, so the earlier "will give"/"will focus" strengthening
+  is superseded here by his explicit preference.
+- Recompiled successfully (7 pages, unchanged). Summary subsection complete
+  again pending final review.
