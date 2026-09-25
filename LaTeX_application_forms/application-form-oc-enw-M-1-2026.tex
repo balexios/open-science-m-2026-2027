@@ -37,6 +37,8 @@
 \makeatother
 \urlstyle{tt}
 
+\usepackage[most]{tcolorbox}
+
 % Color hyperlinks (URLs, citations) blue; hyperref is already loaded by application.sty
 \hypersetup{
   colorlinks=true,
@@ -136,8 +138,14 @@ post-quantum cryptography; interposition; system calls; shared memory; end-to-en
 \subsection{Research topic}
 % This part of the proposal includes the overall aim, objectives and background. It also deals with the scientific originality and/or the innovative approach of the proposed research and investment, including its cutting-edge aspects and/or groundbreaking character. 
 
+\av{I guess maybe we want to emphasize research gap ... solution ... novelty originality ... check Marios proposal and Habib's}
 
 The transition to quantum-resistant cryptography is an urgent European and Dutch priority, reflected in the EU's coordinated roadmap, the Dutch NCSC's guidance, and the joint AIVD, CWI, and TNO migration handbook~\cite{EC2025PQCTransition,NCSCQuantumSafeGuidance,AIVDCWITNO2024Handbook}. Expert discussions of post-quantum security also emphasize the need to begin migration early and the risks of delayed adoption~\cite{Preneel2025QuantumSafeMigration,Preneel2026RiskOfBeingLate}. The EU roadmap calls for Member States to begin transitioning by the end of 2026 and for critical infrastructure protection to migrate by the end of 2030~\cite{EC2025PQCTransition}. Preparing existing systems is particularly challenging: the AIVD highlights long-lived systems that are difficult or impossible to update and warns that migration can take many years~\cite{AIVD2026QuantumThreat}, while ENISA identifies protocol-integration challenges that extend beyond replacing cryptographic algorithms~\cite{ENISA2022PQCIntegration}, motivating practical ways to retrofit quantum-resistant protection.
+
+\medskip
+
+Rewriting applications to support quantum-resistant communication is, of course, an option, but it is not always feasible. Legacy software is often only available as a compiled executable, without access to its source code, which rules out this option entirely; government reports in both the United States and the Netherlands describe how such legacy systems %, some running decades-old languages such as COBOL on unsupported hardware and software,
+remain in critical use across public administration and are difficult or costly to replace~\cite{GAO2025LegacySystems,AcICT2025Legacy}. Even when the source code is available, modifying it is time-consuming and error-prone, as changes to long-lived, poorly documented codebases can introduce subtle regressions. These constraints motivate solutions that can facilitate the migration to quantum-resistant communication without requiring applications to be rewritten.
 
 \medskip
 
@@ -145,12 +153,29 @@ Retrofitting this protection requires identifying every point at which applicati
 
 \medskip
 
-Rewriting applications to support quantum-resistant communication is, of course, an option, but it is not always feasible. Legacy software is often only available as a compiled executable, without access to its source code, which rules out this option entirely; government reports in both the United States and the Netherlands describe how such legacy systems %, some running decades-old languages such as COBOL on unsupported hardware and software, 
-remain in critical use across public administration and are difficult or costly to replace~\cite{GAO2025LegacySystems,AcICT2025Legacy}. Even when the source code is available, modifying it is time-consuming and error-prone, as changes to long-lived, poorly documented codebases can introduce subtle regressions. These constraints motivate solutions that can facilitate the migration to quantum-resistant communication without requiring applications to be rewritten.
+Existing solutions that attempt to transparently retrofit quantum-resistant communication into unmodified applications cover only a subset of these communication points, and each comes with its own limitations. Security gateways act as intermediaries that wrap an application's existing network connections in a protective tunnel, for instance using TLS, without requiring any changes to the application itself~\cite{Durumeric2017HTTPSInterception,Stunnel2026Manual}. However, they do not encrypt the segment between the application and the gateway, in either direction, since this segment is typically assumed to run over a trusted local network, and, operating purely at the network level, they do not cover local communication on the same machine, such as shared memory, pipes, and files. IPsec protects network traffic at the IP layer by authenticating and encrypting packets exchanged between hosts~\cite{Kent2005RFC4301}, but its inherent complexity has limited interoperability across implementations~\cite{Pepelnjak2013IPsecComplexity}, and it requires a compatible implementation and sufficient configuration privileges at both communicating endpoints, which is not available everywhere and makes adoption challenging in practice; like security gateways, it also does not cover local communication, including shared memory, pipes, and files. Finally, VM-based solutions run applications inside confidential virtual machines and can, in principle, protect both local communication, including shared memory within the virtual machine boundary, and network communication, for example by automatically wrapping traffic in mutual TLS~\cite{Misono2024ConfidentialVMs,EdgelessContrast2026}. However, such solutions typically require specialized confidential-computing hardware or changes to how applications are deployed, and the added virtualization, attestation, and encryption layers introduce significant performance overhead. Table~\ref{tab:comparison} summarizes these approaches alongside On-TRAQ.
 
-\medskip
-
-Existing solutions provide only partial answers to this challenge. Security gateways act as intermediaries that wrap an application's existing network connections in a protective tunnel, for instance using TLS, without requiring any changes to the application itself~\cite{Durumeric2017HTTPSInterception,Stunnel2026Manual}. However, they do not encrypt the segment between the application and the gateway, in either direction, since this segment is typically assumed to run over a trusted local network, and, operating purely at the network level, they do not cover local communication on the same machine, such as shared memory, pipes, and files. IPsec protects network traffic at the IP layer by authenticating and encrypting packets exchanged between hosts~\cite{Kent2005RFC4301}, but its inherent complexity has limited interoperability across implementations~\cite{Pepelnjak2013IPsecComplexity}, and it requires a compatible implementation and sufficient configuration privileges at both communicating endpoints, which is not available everywhere and makes adoption challenging in practice; like security gateways, it also does not cover local communication, including shared memory, pipes, and files. Finally, VM-based solutions run applications inside confidential virtual machines and can, in principle, protect both local communication, including shared memory within the virtual machine boundary, and network communication, for example by automatically wrapping traffic in mutual TLS~\cite{Misono2024ConfidentialVMs,EdgelessContrast2026}. However, such solutions typically require specialized confidential-computing hardware or changes to how applications are deployed, and the added virtualization, attestation, and encryption layers introduce significant performance overhead.
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{@{}p{0.19\linewidth}p{0.19\linewidth}p{0.26\linewidth}p{\dimexpr0.36\linewidth-6\tabcolsep\relax}@{}}
+\hline
+\textbf{Approach} & \textbf{Coverage} & \textbf{Deployability} & \textbf{Overhead} \\
+\hline
+Rewriting applications & Full & Source code required; modification error-prone & Low \\
+\hline
+Security gateways & Network only (excl.\ app-to-gateway/ gateway-to-app) & No app changes & Low \\
+\hline
+IPsec & Network only & Not universally supported & Low \\
+\hline
+VM-based solutions & Full & Specialized hardware; application or platform changes & Medium to High \\
+\hline
+\textbf{On-TRAQ} & \textbf{Full} & \textbf{No app changes} & \textbf{Low} \\
+\hline
+\end{tabular}
+\caption{Comparison of approaches to retrofitting quantum-resistant communication into existing applications. Coverage refers to the range of communication methods protected (network and/or local). Deployability captures the requirements for adoption, such as source code access or specialized hardware. Overhead refers to the runtime performance cost introduced by the approach.}
+\label{tab:comparison}
+\end{table}
 
 \medskip
 
@@ -162,11 +187,25 @@ Building such an interposition layer, however, is not straightforward. The layer
 
 \medskip
 
-On-TRAQ aims to overcome these trade-offs by building an interposition approach that is practical, secure, and efficient at the same time: it should work with unmodified applications on commodity systems, withstand tampering by a compromised application, and add no overhead beyond the unavoidable cost of the post-quantum cryptographic operations themselves. This interposition layer, together with modern post-quantum cryptographic techniques, will form the foundation for transparently migrating existing applications into the quantum era.
+On-TRAQ aims to overcome these trade-offs by building an interposition approach that is practical, secure, and efficient at the same time: it should work with unmodified applications on commodity systems, withstand tampering by a compromised application, and add no overhead beyond the unavoidable cost of the post-quantum cryptographic operations themselves. This interposition layer, together with modern post-quantum cryptographic techniques, will form the foundation for transparently migrating existing applications into the quantum era. Achieving this combination --- for the full range of application communication, with post-quantum cryptography --- is an open problem that On-TRAQ sets out to solve.
 
-% Table commented out at Alexios's request, kept for reference.
+\medskip
+
+On-TRAQ is therefore guided by the following central research question:
+
+\begin{tcolorbox}[
+  colback=blue!8,
+  colframe=blue!50,
+  arc=4pt,
+  boxrule=0.8pt,
+  left=6pt, right=6pt, top=4pt, bottom=4pt
+]
+\centering\itshape
+Can a single interposition layer transparently retrofit quantum-resistant communication into existing applications, without sacrificing security or performance?
+\end{tcolorbox}
+
+% Old table commented out; superseded by tab:comparison above.
 \iffalse
-% Add references to representative systems when developing the surrounding discussion.
 \begin{table}[htbp]
 \centering
 \caption{Communication coverage, deployment requirements, and potential performance costs of existing approaches. Coverage depends on configuration and the protection boundary; performance costs require evaluation for specific systems.}
@@ -185,6 +224,7 @@ VM-based solutions & Yes & Yes & Virtualization cost, platform-specific hardware
 \end{tabular}
 \end{table}
 \fi
+
 
 \subsection{Approach}
 % Describe which methods and techniques will be used in the proposed research and discuss their applicability and accessibility. Include a detailed work plan and indicate the duration of the proposed research.

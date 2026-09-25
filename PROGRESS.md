@@ -1833,3 +1833,35 @@ motivation; official policy documents remain preferable for government targets.
 - Suggested (not agreed) Approach split: overview + figure 0.4; system call
   interposition 0.6; shared memory interposition 0.6; PQC integration 0.4;
   evaluation 0.4; work plan/timeline 0.5.
+
+## Research topic gaps to fix (2026-09-25)
+
+Three gaps identified by checking the current Research topic draft against
+the call's assessment criteria (scientific quality criterion, 75% weight):
+
+1. **Scientific novelty not stated explicitly.** The call asks for
+   "scientifically innovative and/or groundbreaking elements." The section
+   explains what On-TRAQ will do but never makes a crisp claim about what
+   the scientific contribution is (unified syscall + shared-memory framework?
+   a technique that achieves all three properties simultaneously?). A clear
+   novelty sentence should be added, either bridging the existing-solutions
+   discussion into the approach-direction paragraph or in the closing
+   paragraph. Mechanism details stay in Approach; the claim itself belongs here.
+
+2. **No explicit research objective or question.** The call asks for "clarity
+   of the proposal, question posed and the objectives." The research question
+   was removed (2026-09-24) and the section now ends on a vision statement.
+   A referee may look for a crisper formulation of what will be investigated.
+
+3. **Open `\av{}` note at line 144 unresolved.** Alexios's own note —
+   "Probably this paragraph should be moved later and we need instead of the
+   figure a table regarding where our solution stands" — was never acted on.
+   A table that includes On-TRAQ as a row (covering both shared memory and
+   network, no hardware requirements, no source changes) would make the
+   novelty visible at a glance instead of requiring the reader to reconstruct
+   it from prose.
+
+Decision: defer these fixes until Approach is drafted, then return to
+Research topic with the full picture. The Approach section will carry the
+mechanism detail; Research topic then needs to foreshadow the novelty claim
+clearly.
