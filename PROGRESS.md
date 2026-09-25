@@ -1865,3 +1865,152 @@ Decision: defer these fixes until Approach is drafted, then return to
 Research topic with the full picture. The Approach section will carry the
 mechanism detail; Research topic then needs to foreshadow the novelty claim
 clearly.
+
+## State check after 2026-09-25 edits (2026-09-25)
+
+Re-read the .tex (commit b5d0f23 plus working tree, identical). Changes made
+outside this log, and their effect on the "gaps" entry above:
+- Research topic order is now: motivation -> rewriting infeasibility ->
+  communication methods (Figure 1) -> existing solutions -> On-TRAQ idea ->
+  interposition trade-offs -> closing aim -> research question.
+- Existing-solutions opener is now "Existing solutions that attempt to
+  transparently retrofit quantum-resistant communication into unmodified
+  applications cover only a subset of these communication points, and each
+  comes with its own limitations."
+- New Table 1 (`tab:comparison`): Approach / Coverage / Deployability / Overhead,
+  rows Rewriting, Security gateways, IPsec, VM-based, On-TRAQ (bold: Full, No app
+  changes, Low). Gap 3 (table showing where On-TRAQ stands) is addressed. The old
+  `\iffalse` table is still in the source.
+- Closing paragraph (no longer centered/italic) adds: "Achieving this combination
+  --- for the full range of application communication, with post-quantum
+  cryptography --- is an open problem that On-TRAQ sets out to solve." Gap 1
+  (novelty) is partly addressed.
+- Research question is back (gap 2 addressed), in a blue `tcolorbox`
+  (`\usepackage[most]{tcolorbox}` in the preamble): "Can a single interposition
+  layer transparently retrofit quantum-resistant communication into existing
+  applications, without sacrificing security or performance?" This supersedes
+  the 2026-09-24 removal.
+- New note at the top of Research topic: `\av{I guess maybe we want to emphasize
+  research gap ... solution ... novelty originality ... check Marios proposal and
+  Habib's}`.
+- A.1: the abstract now says "quantum-resistant communication" (not "...
+  communication security") and ends "On-TRAQ aims to provide a practical
+  migration path..." (the "By separating..." clause was removed). Keywords are
+  now: post-quantum cryptography; interposition; system calls; shared memory;
+  end-to-end communication security.
+- Build: the full pdflatex/bibtex cycle is clean (only the long-standing
+  empty-year warning for NCSCQuantumSafeGuidance). The PDF is now 8 pages.
+  Research topic runs from the start of page 2 to the top of page 4 (~2.1 pages
+  with the figure and table), above the 1.5-1.8 target, so Approach's share of
+  A.2 drops from ~2.9 to ~2.5 pages unless Research topic is trimmed.
+- **Fix (2026-09-25):** the communication paragraph now starts "Retrofitting
+  quantum-resistant protection without rewriting requires identifying every point
+  at which applications exchange information." ("this protection" had lost its
+  antecedent after the paragraph reorder; "without rewriting" links back to the
+  preceding rewriting paragraph.) Recompiled (8 pages).
+- **Revised (2026-09-25):** Alexios disliked the "Retrofitting quantum-resistant
+  protection without rewriting requires..." bridge and commented it out (left
+  as a % comment). Folded the bridge into the paragraph's first sentence instead:
+  "Such solutions must cover every way in which applications communicate:
+  sockets, shared memory, pipes, and files, as illustrated in Figure 1."
+  ("Such solutions" = the rewriting paragraph's final sentence.) Recompiled (8 pages).
+- **Merged (2026-09-25):** at Alexios's request, joined the rewriting-infeasibility
+  paragraph and the communication-methods paragraph into one (removed the blank
+  lines and \medskip between them; Alexios's commented-out bridge line is kept
+  in place as a % comment). Recompiled (8 pages).
+- **Table 1 framed as research gap (2026-09-25):** at Alexios's request, removed
+  "Table 1 summarizes these approaches alongside On-TRAQ." from the end of the
+  existing-solutions paragraph. The On-TRAQ idea paragraph now opens: "As Table 1
+  summarizes, no existing approach combines full coverage of application
+  communication, no application changes, and low overhead. On-TRAQ aims to close
+  this gap. Its central idea is to build a security layer..." (checked against
+  the rows: rewriting needs source changes, gateways/IPsec are network-only, VMs
+  need platform changes and have higher overhead). Caption now ends: "The On-TRAQ
+  row shows the properties the project aims to achieve." Recompiled (8 pages).
+- **"No app or platform changes" throughout Research topic (2026-09-25):** at
+  Alexios's request:
+  - Table 1 On-TRAQ Deployability cell is now "No app or platform changes".
+  - The caption defines platform changes: "...source code access, specialized
+    hardware, or other platform changes (e.g., to the operating system or
+    runtime environment)."
+  - Gap sentence: "...no application or platform changes, and low overhead."
+  - On-TRAQ idea paragraph: "...without requiring changes to the communicating
+    applications or to the underlying platform."
+  - Challenges paragraph: "transparent, so that it requires no changes to the
+    applications or to the underlying platform."
+  - Closing paragraph: "work with unmodified applications on unmodified
+    commodity platforms".
+  - The Security gateways row still says "No app changes" (they need extra
+    proxy infrastructure but no platform modification); left as is.
+  Recompiled (8 pages).
+
+## "How" sentence for the closing paragraph: proposal (2026-09-25)
+
+- Alexios wants the last Research topic paragraphs to say briefly how On-TRAQ
+  will do it ("modern software and hardware primitives..."). Re-read the root
+  `scarlet.pdf` (Sep 9 version; `relevant-work-compartments/scarlet.pdf` is an
+  older draft). Mystes' recipe: only commodity mechanisms (Linux interposition
+  interfaces: ptrace for startup, SUD fallback; zpoline-style binary rewriting
+  for the fast path, with syscall sites verified offline through fuzzing; PKU
+  isolation plus an in-process sandbox; no app/OS/hardware changes). Still not
+  to be cited.
+- Proposed (not yet applied) wording: combine commodity primitives (existing OS
+  interposition interfaces for complete mediation, binary rewriting for
+  low-overhead interception, hardware-backed in-process isolation such as memory
+  protection keys to protect the layer *and its cryptographic keys*); for shared
+  memory, mediate the system calls that set up shared regions, then redirect
+  accesses (page protection or rewriting). Open point: Alexios's Approach note
+  "Hardware and binary rewriting agnostic" may mean these primitives should be
+  given only as examples.
+- **Applied (2026-09-25):** Alexios chose the shorter option. The closing
+  paragraph, after "...cryptographic operations themselves.", now reads: "To this
+  end, On-TRAQ will combine commodity software and hardware primitives, namely OS
+  interposition interfaces, binary rewriting, and hardware-backed in-process
+  isolation, to mediate both system calls and shared memory accesses without any
+  application or platform changes." Recompiled (8 pages).
+- **Table 1 (2026-09-25):** Rewriting applications row, Deployability cell
+  simplified to "Source code modifications required" (was "Source code required;
+  modification error-prone"), at Alexios's request. Recompiled (8 pages).
+- **Table 1 (2026-09-25):** Rewriting applications row, Deployability cell now
+  "App or platform changes" (Alexios's wording), parallel to On-TRAQ's "No app or
+  platform changes". Recompiled (8 pages).
+- **Table 1 Deployability unified (2026-09-25):** at Alexios's request, all cells
+  use "app/platform changes": Rewriting "App/platform changes"; Security gateways
+  "No app/platform changes"; IPsec "Platform changes; not universally supported";
+  VM-based "Specialized hardware; app/platform changes"; On-TRAQ (bold) "No
+  app/platform changes". The two-line IPsec and VM cells use `\raggedright` to
+  avoid hyphenation and stretched spacing. The prose keeps the spelled-out
+  "application or platform changes". Recompiled (8 pages).
+- **App/platform wording pass (2026-09-25):** at Alexios's request:
+  - Abstract: "...without requiring changes to the applications or the platforms
+    they run on." (was "...application source-code modifications").
+  - Existing-solutions opener: "...into unmodified applications and platforms
+    cover only a subset...".
+  - VM sentence: "...require specialized confidential-computing hardware and
+    other platform changes, ..." (was "...or changes to how applications are
+    deployed").
+  - Repetition trimmed: removed "without any application or platform changes"
+    from the "To this end..." sentence; the On-TRAQ idea paragraph ends again
+    with "...without requiring changes to the communicating applications
+    themselves."
+  - The phrase is kept in the gap sentence, the definition of "transparent", and
+    the closing goal ("unmodified applications on unmodified commodity
+    platforms"). The Summary is unchanged ("source code" wording, for
+    non-specialists). Recompiled (8 pages); A.1 still fits on page 1.
+- **Rephrased (2026-09-25):** Alexios found "unmodified applications on
+  unmodified commodity platforms" awkward. It now reads "it should work with
+  existing applications on today's commodity platforms without modifying
+  either, ...". Recompiled (8 pages).
+- **Security wording simplified (2026-09-25):** Alexios wants the
+  compromised-application threat discussed only in the trade-offs paragraph. In
+  the closing paragraph, "withstand tampering by a compromised application" is
+  now "provide strong security guarantees". No other mentions existed outside the
+  trade-offs paragraph. Recompiled (8 pages).
+- **Table 1 (2026-09-25):** Security gateways Coverage cell now puts "Network
+  only" on its own line, with "(excl. app-to-gateway/ gateway-to-app)" starting
+  on the next line (`\newline`). Recompiled (8 pages).
+- **Table 1 (2026-09-25):** added vertical rules and an outer frame
+  (`|p{..}|p{..}|p{..}|p{..}|`; last column width now 0.36\linewidth -
+  8\tabcolsep - 5\arrayrulewidth, so the table stays exactly text width). The
+  Security gateways Coverage cell is now `\raggedright` to avoid stretched spacing.
+  Visually checked; recompiled (8 pages).
