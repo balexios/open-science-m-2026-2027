@@ -1710,3 +1710,126 @@ motivation; official policy documents remain preferable for government targets.
 - Recipe for future re-exports, restated for reference: any new SVG export
   from draw.io needs the same light-dark()/var() stripping before
   rsvg-convert can render it correctly (resvg has the same limitation).
+
+## Ideas: quantum-computing context for Abstract and Summary (2026-09-24)
+
+- Alexios wants one or two sentences of general quantum-computing context in
+  the Abstract and Summary, as the Research topic has. Nothing changed in LaTeX yet.
+- Assistant suggestions (not yet decided): why quantum computers break today's
+  public-key cryptography (Shor; RSA/elliptic curves; symmetric crypto less
+  affected); harvest-now/decrypt-later urgency; post-quantum standards already
+  exist (NIST FIPS 203/204/205, August 2024), so deployment is the bottleneck;
+  the EU's 2030 target for critical systems.
+- Page fit: the compiled PDF shows A.1 ending with about 3-4 free lines on
+  page 1, so additions probably need small trims elsewhere in A.1.
+- **Decision/change (2026-09-24):** Alexios chose a mix of ideas 1 and 3
+  (why quantum breaks public-key crypto; standards already exist), plus idea 4
+  (EU 2030 target).
+  - Abstract: added two opening sentences (quantum computers will break RSA/ECC
+    public-key crypto; post-quantum algorithms already standardized, EU calls for
+    critical infrastructure to migrate by 2030); the old opener now starts "Yet
+    this transition presents a challenge...".
+  - Summary: replaced the first two sentences with a non-specialist version
+    (hard maths problems -> quantum computers solve them -> new techniques exist,
+    EU 2030 target -> "The challenge now is bringing these techniques to existing
+    software.").
+  - Recompiled (7 pages); A.1 still fits on page 1 with ~2 lines spare. The
+    abstract/summary name no standards body and have no citations; the EU 2030
+    wording matches the Research topic's cited claim [EC2025PQCTransition].
+
+## Existing-solutions paragraph transition (2026-09-24)
+
+- Alexios found the transition into the existing-solutions paragraph abrupt:
+  "this challenge" had no clear antecedent (the previous paragraph ends with
+  "These constraints motivate solutions that ... without requiring applications
+  to be rewritten").
+- Replaced "Existing solutions provide only partial answers to this challenge."
+  with: "Several such solutions already exist, protecting application
+  communication without requiring applications to be rewritten. However, each
+  either covers only some of the communication methods described above or comes
+  with significant deployment and performance costs." "Such solutions" picks up
+  the previous sentence; the second sentence previews the paragraph (gateways/IPsec
+  = coverage gap, VMs = cost). Recompiled (7 pages).
+- **Reverted (2026-09-24):** at Alexios's request, restored the original opening
+  "Existing solutions provide only partial answers to this challenge." The
+  transition issue remains open. Recompiled (7 pages).
+
+## Interposition-challenges paragraph opening rewritten (2026-09-24)
+
+- Alexios clarified that the abrupt transition he meant was into the
+  interposition-trade-offs paragraph (not the existing-solutions paragraph);
+  its purpose is to say that building such an interposition layer is not
+  straightforward.
+- Replaced "Existing interposition solutions come with limitations. In this
+  paragraph, we discuss the main approaches and their trade-offs." with:
+  "Building such an interposition layer, however, is not straightforward. The
+  layer must be secure, so that a compromised application cannot tamper with or
+  bypass it; efficient, so that it adds little overhead; and transparent, so that
+  it works with unmodified applications. Existing interposition techniques
+  typically sacrifice one of these properties to achieve the others."
+  The three properties map onto the paragraph's three families: cross-process
+  (secure, not efficient), in-process (efficient, not secure), intrusive
+  modifications (efficient/secure, not transparent). Echoes the Mystes framing
+  without citing it.
+- Next sentence lightly reworded to avoid repeating "interposition techniques":
+  "Interposition, whether applied to system calls or to memory accesses, has
+  traditionally been implemented through cross-process designs...".
+- Recompiled (7 pages, no undefined citations).
+
+## Research topic closing paragraph rewritten (2026-09-24)
+
+- Alexios disliked the closing paragraph ("On-TRAQ's aim is to build a practical
+  approach... usability, security, and performance side-effects... inevitable
+  and expected..."); wanted it to say we plan to build a practical, secure, and
+  efficient interposition approach.
+- Replaced with one sentence: "On-TRAQ aims to overcome these trade-offs by
+  building an interposition approach that is practical, secure, and efficient at
+  the same time: it should work with unmodified applications on commodity
+  systems, withstand tampering by a compromised application, and add no overhead
+  beyond the unavoidable cost of the post-quantum cryptographic operations
+  themselves." Each property answers one family from the preceding paragraph
+  (intrusive -> practical, in-process -> secure, cross-process -> efficient);
+  keeps the accepted-PQC-cost point. Dropped the usability/adoption-barrier
+  clause (still in the Summary). Recompiled (7 pages).
+
+## Central research question removed (2026-09-24)
+
+- At Alexios's request, deleted the research question block entirely (lead-in
+  "On-TRAQ is therefore guided by a central research question:" plus the
+  centered italic question and preceding \medskip). This supersedes the earlier
+  RQ decisions; Research topic no longer states an explicit research question.
+- Added a closing sentence to the final paragraph instead: "Such an interposition
+  layer can then serve as a foundation for transparently retrofitting
+  post-quantum cryptographic mechanisms into existing applications, protecting
+  their communication without requiring any changes to the applications
+  themselves." Research topic now ends on this paragraph. Recompiled (7 pages).
+- **Follow-up (2026-09-24):** Alexios felt the crypto read as an afterthought.
+  Closing sentence now: "This interposition layer, together with modern
+  post-quantum cryptographic techniques, will form the foundation for
+  transparently migrating existing applications into the quantum era, without
+  requiring any changes to the applications themselves." Interposition and PQC
+  are co-equal parts of the foundation; "into the quantum era" matches the
+  abstract/summary. Recompiled (7 pages).
+
+## Closing paragraph centered and italicized (2026-09-24)
+
+- At Alexios's request, wrapped the final Research topic paragraph ("On-TRAQ aims
+  to overcome these trade-offs...") in `\begin{center}\itshape ... \end{center}`,
+  like the removed research question. Removed the preceding \medskip, since the
+  center environment adds its own spacing. Recompiled (7 pages).
+- Noted: the source's closing sentence now ends at "...into the quantum era."
+  The ", without requiring any changes to the applications themselves" clause is
+  no longer there; presumably trimmed manually by Alexios. Left as is.
+
+## Remaining page budget (2026-09-24)
+
+- Measured in the compiled PDF: A.2 heading + Figure 1 + Research topic take
+  ~1.6 pages (a full page is ~55 lines). Remaining in A.2's 6 pages: ~4.4.
+- Budget given to Alexios (allocations from 2026-09-12 kept; Approach gets the
+  remainder): Approach ~2.9 pages (~160 lines); Justification 0.25 (~14 lines);
+  Embedding/expertise 0.75 (~40 lines); Risk assessment 0.5 (~27 lines).
+  A.3 Impact: 1 page (separate limit). Part B public summaries: 100 words each
+  (NL + EN). References do not count.
+- Suggested (not agreed) Approach split: overview + figure 0.4; system call
+  interposition 0.6; shared memory interposition 0.6; PQC integration 0.4;
+  evaluation 0.4; work plan/timeline 0.5.
