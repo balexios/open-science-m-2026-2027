@@ -2014,3 +2014,28 @@ outside this log, and their effect on the "gaps" entry above:
   8\tabcolsep - 5\arrayrulewidth, so the table stays exactly text width). The
   Security gateways Coverage cell is now `\raggedright` to avoid stretched spacing.
   Visually checked; recompiled (8 pages).
+
+## Table 1 simplified to Yes/No deployability (2026-09-26)
+
+- At Alexios's request, replaced the Deployability column with
+  "Deployability/compatibility issues" and Yes/No values: Rewriting Yes;
+  Security gateways No; IPsec Yes; VM-based Yes; On-TRAQ (bold) No. The earlier
+  app/platform-changes cell texts and their \raggedright tweaks are gone.
+- Column widths rebalanced to 0.22/0.24/0.30/rest (Overhead column narrowed) so
+  the header fits on one line without hyphenation; the table stays text width.
+  The caption (Alexios's shortened version) is unchanged. Visually checked;
+  recompiled (8 pages).
+- Header now breaks as "Deployability/compatibility" / "issues" (`\newline`),
+  at Alexios's request. Recompiled (8 pages).
+- Coverage column header renamed "Communication coverage" (Alexios's request).
+  Recompiled (8 pages).
+- **Table 1 title case (2026-09-26):** continuing Alexios's own capitalisation
+  edits ("Communication Coverage", "Rewriting Applications", "Security
+  Gateways"): headers "Deployability or Compatibility / Issues"; rows "VM-Based
+  Solutions"; cells "Network Only" (x2). The "(excl. app-to-gateway/
+  gateway-to-app)" note, "Medium to High", and the Yes/No/Full/Low values are
+  unchanged. Recompiled (8 pages).
+- **Research question (2026-09-26):** dropped "single" at Alexios's request. It now
+  reads: "Can an interposition layer transparently retrofit quantum-resistant
+  communication into existing applications, without sacrificing security or
+  performance?" Recompiled (8 pages).

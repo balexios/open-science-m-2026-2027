@@ -140,8 +140,6 @@ post-quantum cryptography; interposition; system calls; shared memory; end-to-en
 
 %\av{I guess maybe we want to emphasize research gap ... solution ... novelty originality ... check Marios proposal and Habib's}
 
-\av{maybe simplify even more the table, e.g., coverage issues, diploybility issues etc ... maybe make more crisp regarding novelty and originality these kind of things ... e.g., we are the first who try to combine for this use case ... check marios and habib proposal}
-
 The transition to quantum-resistant cryptography is an urgent European and Dutch priority, reflected in the EU's coordinated roadmap, the Dutch NCSC's guidance, and the joint AIVD, CWI, and TNO migration handbook~\cite{EC2025PQCTransition,NCSCQuantumSafeGuidance,AIVDCWITNO2024Handbook}. Expert discussions of post-quantum security also emphasize the need to begin migration early and the risks of delayed adoption~\cite{Preneel2025QuantumSafeMigration,Preneel2026RiskOfBeingLate}. The EU roadmap calls for Member States to begin transitioning by the end of 2026 and for critical infrastructure protection to migrate by the end of 2030~\cite{EC2025PQCTransition}. Preparing existing systems is particularly challenging: the AIVD highlights long-lived systems that are difficult or impossible to update and warns that migration can take many years~\cite{AIVD2026QuantumThreat}, while ENISA identifies protocol-integration challenges that extend beyond replacing cryptographic algorithms~\cite{ENISA2022PQCIntegration}, motivating practical ways to retrofit quantum-resistant protection.
 
 \medskip
@@ -158,19 +156,19 @@ Existing solutions that attempt to transparently retrofit quantum-resistant comm
 \begin{table}[htbp]
 \centering
 \small
-\begin{tabular}{|p{0.19\linewidth}|p{0.19\linewidth}|p{0.26\linewidth}|p{\dimexpr0.36\linewidth-8\tabcolsep-5\arrayrulewidth\relax}|}
+\begin{tabular}{|p{0.22\linewidth}|p{0.24\linewidth}|p{0.30\linewidth}|p{\dimexpr0.24\linewidth-8\tabcolsep-5\arrayrulewidth\relax}|}
 \hline
-\textbf{Approach} & \textbf{Coverage} & \textbf{Deployability} & \textbf{Overhead} \\
+\textbf{Approach} & \textbf{Communication Coverage} & \textbf{Deployability or Compatibility\newline Issues} & \textbf{Overhead} \\
 \hline
-Rewriting applications & Full & App/platform changes & Low \\
+Rewriting Applications & Full & Yes & Low \\
 \hline
-Security gateways & \raggedright Network only\newline (excl.\ app-to-gateway/ gateway-to-app) & No app/platform changes & Low \\
+Security Gateways & \raggedright Network Only\newline (excl.\ app-to-gateway/ gateway-to-app) & No & Low \\
 \hline
-IPsec & Network only & \raggedright Platform changes; not universally supported & Low \\
+IPsec & Network Only & Yes & Low \\
 \hline
-VM-based solutions & Full & \raggedright Specialized hardware; app/\-platform changes & Medium to High \\
+VM-Based Solutions & Full & Yes & Medium to High \\
 \hline
-\textbf{On-TRAQ} & \textbf{Full} & \textbf{No app/platform changes} & \textbf{Low} \\
+\textbf{On-TRAQ} & \textbf{Full} & \textbf{No} & \textbf{Low} \\
 \hline
 \end{tabular}
 \caption{Comparison of approaches to retrofitting quantum-resistant communication into existing applications. The On-TRAQ row shows the properties the project aims to achieve.}
@@ -201,7 +199,7 @@ On-TRAQ is therefore guided by the following central research question:
   left=6pt, right=6pt, top=4pt, bottom=4pt
 ]
 \centering\itshape
-Can a single interposition layer transparently retrofit quantum-resistant communication into existing applications, without sacrificing security or performance?
+Can an interposition layer transparently retrofit quantum-resistant communication into existing applications, without sacrificing security or performance?
 \end{tcolorbox}
 
 % Old table commented out; superseded by tab:comparison above.
