@@ -2039,3 +2039,29 @@ outside this log, and their effect on the "gaps" entry above:
   reads: "Can an interposition layer transparently retrofit quantum-resistant
   communication into existing applications, without sacrificing security or
   performance?" Recompiled (8 pages).
+
+## Alexios's abstract edits reviewed (2026-09-30)
+
+- Alexios edited the abstract (uncommitted) and asked for a review with no
+  changes for now. Edits: removed "such as RSA and elliptic-curve schemes";
+  opening question now ends "...gain quantum-resistant communication?" (dropped
+  "with minimal changes"); "partial answers to the challenge of protecting..."
+  (dropped "transparently").
+- Review points raised (nothing applied): without a qualifier, the opening
+  question is answered by simply rewriting or upgrading applications, so it no
+  longer sets up On-TRAQ's premise; "a system approach" is less idiomatic than
+  "systems approach"; mixed spelling ("behaviour" vs "standardized");
+  "support end-to-end protection across communicating application components" is
+  vague; the closing still uses "aims to".
+- **Applied (2026-09-30):** "The research will establish..." is now "We will
+  establish the security guarantees achievable through this approach, investigate
+  how to preserve application behaviour, and evaluate the performance costs of
+  transparent protection." ("the research" was ambiguous; "we" matches "We
+  propose On-TRAQ".) No other abstract changes. Recompiled (8 pages).
+- **Applied (2026-09-30):** in Research topic, "...can introduce subtle
+  regressions." is now "...can easily introduce new bugs." ("regressions" is
+  jargon for non-specialist committee members.) Recompiled (8 pages).
+- **Table 1 (2026-09-30):** a colleague was unsure what "Overhead" meant, so the
+  header is now "Runtime Overhead". Recompiled (8 pages).
+  The header was hyphenated ("Over-head") in the narrow column, so it now breaks
+  as "Runtime" / "Overhead", matching the two-line "... / Issues" header.
