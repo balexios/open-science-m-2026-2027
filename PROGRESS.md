@@ -2065,3 +2065,65 @@ outside this log, and their effect on the "gaps" entry above:
   header is now "Runtime Overhead". Recompiled (8 pages).
   The header was hyphenated ("Over-head") in the narrow column, so it now breaks
   as "Runtime" / "Overhead", matching the two-line "... / Issues" header.
+
+## Alexios's structure/emphasis pass reviewed (2026-09-30, commit 34a8868)
+
+Changes made by Alexios (on top of the edits logged above):
+- **Bold emphasis added in Research topic** for skimmability:
+  - Rewriting paragraph: first sentence ("Rewriting applications ... is, of
+    course, an option, but it is not always feasible.") and the "These
+    constraints motivate solutions..." sentence.
+  - Existing-solutions paragraph: the opener sentence, plus run-in bold labels
+    **Security gateways**, **IPsec**, **VM-based**.
+  - Trade-offs paragraph: the first two sentences (not straightforward;
+    secure/efficient/transparent requirements).
+  - Closing paragraph: the whole first sentence (practical, secure, efficient
+    aim).
+  - Not bold: the opening motivation paragraph and the Table 1 research-gap
+    sentence ("As Table 1 summarizes, no existing approach combines...").
+- Closing aim: "add no overhead beyond" is now "add minimal overhead beyond" the
+  unavoidable PQC cost.
+- Research question is now "Can we transparently retrofit quantum-resistant
+  communication into existing applications, without sacrificing security or
+  performance?" ("an interposition layer" replaced by "we").
+- Summary: "transparently retrofitting" is now "retrofitting".
+- New Approach note: `\av{Need to have a figure that more or less is an
+  adaptation of figure 1 i guess ...}`.
+- New untracked file: `LaTeX_application_forms/feedback/lilika-feedback2-application-form-oc-enw-M-1-2026.pdf`
+  (not yet read).
+
+Build/layout: full cycle clean, 8 pages. Research topic (with Figure 1 and
+Table 1) now ends exactly at the bottom of page 3; Approach starts at the top
+of page 4. A.2 used so far: 2.0 pages, leaving ~4.0 pages (Approach ~2.5,
+Justification 0.25, Embedding 0.75, Risk 0.5).
+
+Review suggestions given (not applied):
+- Bold is heavy in places (two 3-line bold blocks); consider bolding only the
+  key clause (e.g., "Building such an interposition layer, however, is not
+  straightforward.").
+- The research-gap sentence / "On-TRAQ aims to close this gap." is arguably the
+  most important claim but is not bold; the motivation paragraph has no bold.
+- Run-in label "VM-based" vs "VM-based solutions" (matches the table row name).
+- Abstract items still open from the earlier review: opening question without a
+  qualifier, "a system approach" vs "systems approach", "behaviour" vs
+  "standardized" spelling, the "Together, these mechanisms..." sentence, and
+  "aims to" in the closing.
+- **Applied (2026-09-30):**
+  - Abstract: "a system approach" is now "a systems approach".
+  - Bold trimmed: the trade-offs paragraph bolds only "Building such an
+    interposition layer, however, is not straightforward."; the closing paragraph
+    bolds only "On-TRAQ aims to overcome these trade-offs by building an
+    interposition approach that is practical, secure, and efficient at the same
+    time" (the colon and the list are plain).
+  - Research-gap sentences are now bold: "As Table 1 summarizes, no existing
+    approach combines ... low overhead. On-TRAQ aims to close this gap."
+  - Run-in label is now **VM-based solutions**.
+  - Visually checked; Research topic still ends at the bottom of page 3 and
+    Approach starts on page 4. Recompiled (8 pages). The abstract's opening
+    question (no qualifier) is still open, pending Alexios's choice.
+- **"Aims to" reduced (2026-09-30):** of five occurrences, changed two: the
+  abstract closing is now "On-TRAQ will provide a practical migration path...",
+  and the bold research-gap sentence is now "On-TRAQ targets this gap." Kept:
+  the Summary closing ("All in all, On-TRAQ aims to provide..."), the Table 1
+  caption ("properties the project aims to achieve", a deliberate hedge), and
+  "On-TRAQ aims to overcome these trade-offs...". Recompiled (8 pages).
