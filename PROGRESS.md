@@ -2127,3 +2127,29 @@ Review suggestions given (not applied):
   the Summary closing ("All in all, On-TRAQ aims to provide..."), the Table 1
   caption ("properties the project aims to achieve", a deliberate hedge), and
   "On-TRAQ aims to overcome these trade-offs...". Recompiled (8 pages).
+
+## Abstract problem statement rewritten (2026-09-30)
+
+- A colleague noted the Summary explains the problem better than the abstract;
+  Alexios agreed the abstract's opening question was vague. Applied Option A,
+  which follows the Summary's argument: replaced the question sentence and the
+  "Existing solutions, such as virtual machines and security gateways, provide
+  only partial answers..." sentence with: "Yet the challenge extends beyond
+  replacing cryptographic algorithms: the new algorithms must also reach
+  existing applications. Rewriting these applications is often impractical or
+  even impossible, for instance when their source code is unavailable or when
+  legacy codebases are costly to modify. Existing solutions that avoid such
+  changes, such as security gateways, IPsec, and confidential virtual machines,
+  protect only part of application communication or require specialized
+  hardware and platform changes."
+- The abstract now names the same three existing solutions as Table 1. The
+  "Together, these mechanisms..." sentence is unchanged (removal still optional).
+  Recompiled (8 pages).
+- **Alexios's edit checked (2026-09-30, 16:45):** the only textual change since
+  the last commit, besides the Option A abstract rewrite, is in the Research
+  topic closing paragraph: "namely OS interposition interfaces, binary
+  rewriting, ..." is now "namely OS interfaces, binary rewriting, ...".
+  Flagged: Figure 1, its caption, and the abstract already use "OS interfaces"
+  for the communication interfaces (sockets, files, pipes), so here the phrase
+  could read as those rather than the kernel's interposition mechanisms
+  (ptrace/SUD/seccomp). Nothing changed pending Alexios's decision. Rebuilt (8 pages).
