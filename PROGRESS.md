@@ -2153,3 +2153,101 @@ Review suggestions given (not applied):
   for the communication interfaces (sockets, files, pipes), so here the phrase
   could read as those rather than the kernel's interposition mechanisms
   (ptrace/SUD/seccomp). Nothing changed pending Alexios's decision. Rebuilt (8 pages).
+
+## Full review of A.1 + Research topic (2026-10-01, commit cf389ec)
+
+Suggestions given to Alexios (nothing applied yet):
+- Substantive (reviewer questions likely):
+  1. No attacker model for same-machine communication: who can read shared
+     memory/pipes but not the endpoints, and why quantum resistance matters
+     locally (harvest-now/decrypt-later mainly concerns recorded network
+     traffic). Needs at least one motivating sentence (e.g., co-located or
+     compromised processes, multi-tenant hosts, memory shared across machines
+     such as CXL; to verify).
+  2. Endpoints/interoperability not addressed: what happens when only one side
+     runs On-TRAQ (e.g., an external server); key exchange/authentication (not
+     just encryption) are not mentioned.
+  3. "Shared memory is the dominant communication method on the same machine ...
+     system call-based techniques are used only as a backup or by legacy
+     applications [ReMon]" is overclaimed (Unix sockets and pipes are common
+     locally) and the citation does not support "dominant"; soften.
+- Abstract: replace the vague "Together, these mechanisms will support
+  end-to-end protection..." with the "how" (commodity software/hardware
+  primitives); "Existing solutions that avoid such changes ... require ...
+  platform changes" reads slightly contradictory ("avoid rewriting").
+- Polish: "behaviour" (the only British spelling) -> "behavior"; repeated
+  "regardless" in the On-TRAQ idea paragraph; "interposes all communication"
+  -> "interposes on"; "critical infrastructure protection to migrate" ->
+  "critical infrastructure to migrate"; "Once applications reside" -> "When";
+  the "OS interfaces" ambiguity (see above); NCSC bib entry has no year
+  (BibTeX warning).
+- Lilika's second feedback PDF (feedback/lilika-feedback2-...) is still unread.
+- **Applied #5 (2026-10-01):** abstract now reads "Existing solutions that avoid
+  application rewriting, such as security gateways, IPsec, and confidential
+  virtual machines, protect only part of application communication or require
+  specialized hardware and platform changes." Recompiled (8 pages).
+- **Reverted (2026-10-01):** at Alexios's request, the abstract again reads
+  "Existing solutions that avoid such changes, ...". Point #5 is open again.
+  Recompiled (8 pages).
+- **#5 resolved (2026-10-01):** at Alexios's suggestion, the abstract now reads
+  "Other existing solutions, such as security gateways, IPsec, and confidential
+  virtual machines, protect only part of application communication or require
+  specialized hardware and platform changes." ("Other" contrasts with rewriting
+  in the previous sentence.) Recompiled (8 pages).
+- **#4 applied (2026-10-01):** in the abstract, "Together, these mechanisms will
+  support end-to-end protection across communicating application components."
+  is replaced by "On-TRAQ will build exclusively on commodity software and
+  hardware primitives, such as binary rewriting and hardware-backed in-process
+  isolation." (the "how", matching the Research topic closing paragraph).
+  Recompiled (8 pages); A.1 still fits on page 1.
+- **#7, #9, #10 applied (2026-10-01):** "The key observation is that, whatever
+  communication method is used, data ultimately passes through memory" (was the
+  second "regardless of..."); "for critical infrastructure to migrate by the end
+  of 2030" (dropped "protection"); "When applications reside on the same
+  physical machine" (was "Once"). Recompiled (8 pages).
+- **#3 applied (2026-10-01):** the shared memory overclaim is softened. Now:
+  "However, shared memory is widely used for high-performance communication on
+  the same machine, as it avoids system calls altogether and only requires
+  memory accesses [ReMon]." (Removed "dominant" and "system call-based
+  techniques are used only as a backup or by legacy applications".)
+  Recompiled (8 pages).
+- **#12 resolved (2026-10-01):** Alexios added `year = {2026}` to
+  NCSCQuantumSafeGuidance. Full rebuild verified: BibTeX gives no warnings, and
+  [2] renders as "Nationaal Cyber Security Centrum. Wat is quantumveilige
+  cryptografie?, 2026. <url>. Accessed September 2026." (8 pages).
+- **#11 resolved (2026-10-01):** the Research topic closing paragraph now reads
+  "namely OS abstractions, binary rewriting, and hardware-backed in-process
+  isolation". Alexios wants a broad term covering more than interception;
+  "OS interfaces" stays reserved for sockets/files/pipes (Figure 1, abstract).
+  Recompiled (8 pages).
+
+## Decisions on review points #1 and #2 (2026-10-01)
+
+- **#1 (local attacker model): dropped.** Alexios does not want to justify
+  same-machine protection with a specific attacker; On-TRAQ is framed as
+  migrating *all* communication to quantum-resistant protection. No text change.
+- **#2 (endpoints, keys, authentication): deferred to Approach.** Alexios's plan:
+  during the initialization phase (connection or shared memory setup), the
+  layer performs a post-quantum handshake; keys and other state are then kept in
+  a protected root of trust (details to be worked out). No change in Research
+  topic. Still to consider in Approach or Risk assessment: peers that do not run
+  On-TRAQ (e.g., external servers), i.e., detection/fallback or a stated scope
+  assumption.
+- Remaining quick fixes: #6 "behaviour" -> "behavior"; #8 "interposes all
+  communication" -> "interposes on all communication".
+- **#8 applied (2026-10-01):** "a security layer that interposes on all
+  communication between applications". Recompiled (8 pages).
+- **Research-gap sentence matches Table 1 columns (2026-10-01):** "As Table 1
+  summarizes, no existing approach combines full communication coverage, no
+  deployability or compatibility issues, and low runtime overhead. On-TRAQ
+  targets this gap." (was "...full coverage of application communication, no
+  application or platform changes, and low overhead."). Recompiled (8 pages).
+- **Trade-offs paragraph (2026-10-01):** "However, such approaches depend on
+  brittle heuristics..." is now "However, state-of-the-art in-process approaches
+  depend on brittle heuristics [zpoline, lazypoline] or representative inputs
+  [K23]...", at Alexios's request. Recompiled (8 pages).
+- **Corrected (2026-10-01):** reverted the previous change ("However, such
+  approaches depend..." restored) and applied Alexios's intended edit instead:
+  "State-of-the-art in-process designs avoid this overhead by executing the
+  interposition logic within the application's own address space, typically
+  using binary rewriting." Recompiled (8 pages).
