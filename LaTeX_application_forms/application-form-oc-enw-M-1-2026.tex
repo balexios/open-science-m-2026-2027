@@ -151,7 +151,7 @@ Such solutions must cover every way in which applications communicate: sockets, 
 
 \medskip
 
-\textbf{Existing solutions that attempt to transparently retrofit quantum-resistant communication into unmodified applications and platforms cover only a subset of these communication points, and each comes with its own limitations.} \textbf{Security gateways} act as intermediaries that wrap an application's existing network connections in a protective tunnel, for instance using TLS, without requiring any changes to the application itself~\cite{Durumeric2017HTTPSInterception,Stunnel2026Manual}. However, they do not encrypt the segment between the application and the gateway, in either direction, since this segment is typically assumed to run over a trusted local network, and, operating purely at the network level, they do not cover local communication on the same machine, such as shared memory, pipes, and files. \textbf{IPsec} protects network traffic at the IP layer by authenticating and encrypting packets exchanged between hosts~\cite{Kent2005RFC4301}, but its inherent complexity has limited interoperability across implementations~\cite{Pepelnjak2013IPsecComplexity}, and it requires a compatible implementation and sufficient configuration privileges at both communicating endpoints, which is not available everywhere and makes adoption challenging in practice; like security gateways, it also does not cover local communication, including shared memory, pipes, and files. Finally, \textbf{VM-based solutions} run applications inside confidential virtual machines and can, in principle, protect both local communication, including shared memory within the virtual machine boundary, and network communication, for example by automatically wrapping traffic in mutual TLS~\cite{Misono2024ConfidentialVMs,EdgelessContrast2026}. However, such solutions typically require specialized confidential-computing hardware and other platform changes, and the added virtualization, attestation, and encryption layers introduce significant performance overhead.
+\textbf{Existing solutions that attempt to transparently retrofit quantum-resistant communication into unmodified applications and platforms cover only a subset of these communication points, and each comes with its own limitations.} \textbf{Security gateways} act as intermediaries that wrap an application's existing network connections in a protective tunnel, for instance using TLS, without requiring any changes to the application itself~\cite{Durumeric2017HTTPSInterception,Stunnel2026Manual}. However, gateways must be configured for every protected service and all traffic routed through them, which scales poorly. Moreover, they do not encrypt the segment between the application and the gateway, in either direction, since this segment is typically assumed to run over a trusted local network, and, operating purely at the network level, they do not cover local communication on the same machine, such as shared memory, pipes, and files. \textbf{IPsec} protects network traffic at the IP layer by authenticating and encrypting packets exchanged between hosts~\cite{Kent2005RFC4301}, but its inherent complexity has limited interoperability across implementations~\cite{Pepelnjak2013IPsecComplexity}, and it requires a compatible implementation and sufficient configuration privileges at both communicating endpoints, which is not available everywhere and makes adoption challenging in practice; like security gateways, it also does not cover local communication, including shared memory, pipes, and files. Finally, \textbf{VM-based solutions} run applications inside confidential virtual machines and can, in principle, protect both local communication, including shared memory within the virtual machine boundary, and network communication, for example by automatically wrapping traffic in mutual TLS~\cite{Misono2024ConfidentialVMs,EdgelessContrast2026}. However, such solutions typically require specialized confidential-computing hardware and other platform changes, and the added virtualization, attestation, and encryption layers introduce significant performance overhead.
 
 \begin{table}[htbp]
 \centering
@@ -162,7 +162,7 @@ Such solutions must cover every way in which applications communicate: sockets, 
 \hline
 Rewriting Applications & Full & Yes & Low \\
 \hline
-Security Gateways & \raggedright Network Only\newline (excl.\ app-to-gateway/ gateway-to-app) & No & Low \\
+Security Gateways & \raggedright Network Only\newline (excl.\ app-to-gateway/ gateway-to-app) & Yes & Low \\
 \hline
 IPsec & Network Only & Yes & Low \\
 \hline
@@ -227,8 +227,6 @@ VM-based solutions & Yes & Yes & Virtualization cost, platform-specific hardware
 \subsection{Approach}
 % Describe which methods and techniques will be used in the proposed research and discuss their applicability and accessibility. Include a detailed work plan and indicate the duration of the proposed research.
 
-\av{Write about deployability issues for gateways ... all traffic goes through them, we need to deploy many .... etc ... for our case machines are responsible to "become" the gates ... write it in research approach}
-
 \av{Hardware and binary rewriting agnostic ...}
 
 \av{table with drawbacks of other solutions and ours ...}
@@ -245,7 +243,7 @@ VM-based solutions & Yes & Yes & Virtualization cost, platform-specific hardware
 
 \av{Do not forget to talk about lilika etc and also have the llm to check the call and everything}
 
-\av{WP one of them should be about crypto, initialization, root of trust, intermediates etc ... again check from marios}
+\av{WP one of them should be about crypto, initialization, root of trust, intermediates etc ... again check from marios ... also advantage compare to the centralized version of security gateways ...}
 
 \av{Need to have a figure that more or less is an adaptation of figure 1 i guess ...}
 

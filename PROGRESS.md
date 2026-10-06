@@ -2251,3 +2251,22 @@ Suggestions given to Alexios (nothing applied yet):
   "State-of-the-art in-process designs avoid this overhead by executing the
   interposition logic within the application's own address space, typically
   using binary rewriting." Recompiled (8 pages).
+
+## Security gateway deployability (2026-10-06)
+
+- Alexios's Approach note (commit 086d1bb, 2026-10-05): gateways have
+  deployability issues (all traffic must pass through them, many must be
+  deployed); in On-TRAQ each machine effectively "becomes" the gateway. The
+  On-TRAQ side of the note is kept in Approach for later.
+- **Applied:** in the Research topic existing-solutions paragraph, after the
+  gateway citations: "However, gateways must be configured for every protected
+  service and all traffic routed through them, which scales poorly. Moreover,
+  they do not encrypt the segment between the application and the gateway, ..."
+  (the earlier "However, they do not encrypt..." now starts with "Moreover").
+- **Table 1:** Security Gateways "Deployability or Compatibility Issues" is now
+  **Yes** (was No). On-TRAQ is now the only row with No, consistent with the
+  research-gap sentence.
+- A longer first wording ("...deployed and configured ... does not scale as the
+  number of applications and hosts grows.") pushed the research-question box onto
+  page 4, so it was shortened. Recompiled (8 pages); Research topic still ends on
+  page 3 and Approach starts at the top of page 4.
