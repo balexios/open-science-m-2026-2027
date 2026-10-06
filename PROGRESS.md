@@ -1,6 +1,6 @@
 # NWO Open Competition ENW-M 2026-2027 — Progress Log
 
-Last updated: 2026-09-23
+Last updated: 2026-10-06
 
 ## Fresh start
 
@@ -2270,3 +2270,54 @@ Suggestions given to Alexios (nothing applied yet):
   number of applications and hosts grows.") pushed the research-question box onto
   page 4, so it was shortened. Recompiled (8 pages); Research topic still ends on
   page 3 and Approach starts at the top of page 4.
+
+## "Transparent" replaced by "zero manual retrofitting" (2026-10-06)
+
+- Terminology taken from zBulk: Towards Automatic Compartmentalization in Rust
+  with Zero Manual Retrofitting (Ritter von Onciul, Raffeck, Wägemann, Kapitza;
+  PLOS '26 at SOSP 2026, pp. 68-76, doi 10.1145/3831586.3838149). Not cited; the
+  ACM page returned 403, so only the Crossref metadata was checked.
+- Title: "On-TRAQ: \underline{T}owards Zero Manual \underline{R}etrofitting of
+  \underline{A}pplications for the \underline{Q}uantum Era" (T = Towards).
+- Every "transparent(ly)" in the .tex is gone:
+  - Abstract: "We propose On-TRAQ, a systems approach towards zero manual
+    retrofitting of quantum-resistant communication into existing applications:
+    through interposition on system calls and shared memory accesses, it requires
+    no changes to the applications or the platforms they run on."; "...performance
+    costs of this protection." (was "transparent protection").
+  - Existing-solutions opener: "...attempt to retrofit quantum-resistant
+    communication without manual changes to applications and platforms...".
+  - On-TRAQ idea paragraph: "automatically encrypted/decrypted".
+  - Trade-offs paragraph: the third property is now "and require zero manual
+    retrofitting, so that neither the applications nor the underlying platform
+    need to be changed."
+  - Closing: "...foundation for migrating existing applications into the quantum
+    era with zero manual retrofitting."
+  - Research question: "Can we retrofit quantum-resistant communication into
+    existing applications with zero manual effort, without sacrificing security
+    or performance?"
+- Summary and keywords did not use "transparent"; unchanged.
+- Recompiled (8 pages, no undefined citations); A.1 fits on page 1, Research
+  topic still ends on page 3.
+- Caveat flagged: "zero" is an absolute claim; Approach/Risk assessment should
+  state what setup (keys/identities, choosing protected apps, non-On-TRAQ peers)
+  is still needed and why it does not count as manual retrofitting.
+- **Reverted (2026-10-06):** Alexios was not sure he liked the changes; the .tex
+  was restored to the last commit (title "Transparently Retrofitting
+  Applications...", all "transparent(ly)" wording back). The entry above is kept
+  only as a record of the option. Recompiled (8 pages).
+
+## Idea: work package on post-quantum protocol options (2026-10-06)
+
+- **Alexios's idea (not yet drafted):** an Approach work package that tries
+  different post-quantum technologies/protocols within On-TRAQ.
+- Candidates discussed: hybrid TLS 1.3 (X25519 + ML-KEM), KEMTLS- or
+  Noise-style handshakes between On-TRAQ peers, IKEv2 with extra key exchanges
+  (RFC 9370), and for shared memory a KEM handshake at region setup followed by
+  symmetric authenticated encryption (no standard protocol known). Standard and RFC
+  numbers still need checking before citing.
+- Suggestion (not agreed): frame the work package around crypto agility (swappable
+  algorithms and protocols) plus a systematic security/performance comparison per
+  channel type, rather than as open-ended "trying". It could be merged with the
+  existing note on a crypto/initialization/root-of-trust work package
+  (check Marios's proposal).
