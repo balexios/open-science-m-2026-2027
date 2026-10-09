@@ -2321,3 +2321,69 @@ Suggestions given to Alexios (nothing applied yet):
   channel type, rather than as open-ended "trying". It could be merged with the
   existing note on a crypto/initialization/root-of-trust work package
   (check Marios's proposal).
+
+## Approach work packages: first ideas (2026-10-07)
+
+Alexios's high-level plan (not final; he will think it over and draw a figure
+himself before any drafting):
+- WP1: system call interposition: binary rewriting plus other techniques; an
+  abstraction layer so it works across architectures; most instructions take a
+  fast path, the rest a slow path; fuzzing campaign if representative inputs are
+  needed.
+- WP2: in-process isolation: higher-level primitives; LLMs to explore more
+  interfaces; CFI compatible.
+- WP3: initialization, root of trust, post-quantum techniques; "done once, works
+  everywhere".
+- WP4 (Alexios's idea): integration, multiple applications and scenarios.
+
+Assistant suggestions (not decided):
+- Shared memory interposition has no WP yet, though the abstract, Research topic,
+  and Table 1 present it as half the contribution. Recommended widening WP1 to
+  "interposition on system calls and shared memory accesses" (alternative: a
+  separate WP).
+- WP4 "End-to-end integration, scenarios, and evaluation": integrated
+  open-source prototype; cross-machine and same-machine scenarios, mixed cases,
+  peers without On-TRAQ; unmodified (incl. binary-only legacy) applications;
+  evaluation along security, zero app/platform changes, and overhead versus
+  Table 1 baselines, with PQC cost measured separately. Run it continuously with
+  a mid-project prototype (also useful for Risk assessment).
+- WP2's LLM use needs one concrete sentence on what is explored.
+No LaTeX changes; Approach drafting postponed by Alexios.
+
+## Budget: what remains after personnel (2026-10-07)
+
+Checked the call (§3.4, §7.2) and NWO's UNL salary table "from 1 July 2026
+(Version 2 - 25-08-2026)" (cao-NU 1 July 2025 + an estimated 4.1% increase;
+lump sums include surtaxes, indexation, and year-end bonus):
+https://www.nwo.nl/sites/nwo/files/media-files/Berekening-G-posten-met-sal-peil-01-07-2026_Engels-obv-schatting-sal-stijging-v2.pdf
+- M-1 cap: €400,000 total per project (personnel + materials + investments +
+  knowledge utilisation). One PhD or postdoc position.
+- PhD, 1.0 FTE, 48 months: €333,876 (65,806 + 81,058 + 88,855 + 98,157 per year).
+  + €5,000 bench fee -> €338,876. **Remaining: ~€61,124** for travel, equipment,
+  open-access fees, etc. (Knowledge utilisation, up to 5% = €20,000, would also
+  come from this remainder.)
+- Postdoc (Senior Scientific Employee, scale 11.0 in the table): 2 years
+  €208,743; 3 years €321,326 (+ €5,000 bench fee).
+- Travel = Materials; equipment with lasting value = Investments (>€150k
+  investments -> ENW-M-1X); standard laptops/office automation not eligible.
+No budget document drafted yet.
+- **Decision (2026-10-07):** Alexios will hire one PhD student (4 years, 1.0 FTE);
+  no postdoc. Budget basis: €338,876 personnel incl. bench fee, ~€61,124 for
+  materials/investments/knowledge utilisation. The four WPs must fit one PhD
+  over 48 months.
+- **Hardware estimate (2026-10-07, rough, incl. 21% VAT; get supplier quotes):**
+  ARM server €5-8k (Ampere Altra Dev Platform launched at $3,999 in 2022; older
+  list prices); x86 workstation €3-5k (PKU on recent Intel/AMD); Google Pixel 11
+  €999 each (256 GB; Pro €1,199), two ≈ €2k. Total ≈ €10-15k, leaving ≈ €46-51k
+  for travel, open access, knowledge utilisation. Stays M-1 (<€150k investments).
+  Flagged: Ampere Altra (Neoverse N1) likely lacks Arm POE (PKU equivalent) and
+  MTE, so prefer an Armv9-class server with confirmed POE if WP2 targets ARM;
+  Pixel 8+ offers usable MTE (Pixel 11 POE support unverified). Tie each machine
+  to a WP in the budget justification.
+- **Travel estimate (2026-10-07, rough, economy fares per call):** per trip
+  Europe ≈ €1.8-2.5k, US ≈ €3-4k (registration, flights, 4-5 hotel nights,
+  allowance). Plan: PhD Y1 summer school/EU workshop, Y2-4 two conferences/year
+  (≈ €17-19k); PI one/year (≈ €10-12k); PhD research visit 1-2 months
+  (≈ €4-6k). Travel ≈ €31-37k. Rough total: PhD €338,876 + hardware €10-15k +
+  travel €31-37k + open access €3-5k ≈ €383-396k, leaving ≈ €4-17k (buffer or
+  knowledge utilisation). Check institutional ACM/IEEE open-access deals.
