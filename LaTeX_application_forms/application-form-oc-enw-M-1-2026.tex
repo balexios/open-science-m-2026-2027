@@ -227,6 +227,14 @@ VM-based solutions & Yes & Yes & Virtualization cost, platform-specific hardware
 \subsection{Approach}
 % Describe which methods and techniques will be used in the proposed research and discuss their applicability and accessibility. Include a detailed work plan and indicate the duration of the proposed research.
 
+WP1: Something about system call interposition: probably binary rewriting + other techniques + no solution that works for multiple architectures (abstraction layer) ... the idea most instructions go through the fast path, and the rest through the slow path ... if required representative inputs fuzzing campaign ... shared memory stuff also agree
+
+WP2: In-process isolation ... primitives higher level ... use of llms to explore more interfaces etc ... cfi compatible ...
+
+WP3: Initialization, root of trust, different ways of doing things, techniques for postquantum etc ... done once works everywhere
+
+WP4: End-to-end integration, scenarios, and evaluation
+
 \av{Hardware and binary rewriting agnostic ...}
 
 \av{table with drawbacks of other solutions and ours ...}
@@ -250,6 +258,20 @@ VM-based solutions & Yes & Yes & Virtualization cost, platform-specific hardware
 \av{Root of trust ARM PKU paper}
 
 \av{Need also to tell that once we did once ... then we can do it for all other applications that want to use the exact same technology ... maybe in the work packages}
+
+┌─────────────────────┬───────┐
+│       Section       │ Pages │
+├─────────────────────┼───────┤
+│ Approach            │ ~2.5  │
+├─────────────────────┼───────┤
+│ Justification       │ 0.25  │
+├─────────────────────┼───────┤
+│ Embedding/expertise │ 0.75  │
+├─────────────────────┼───────┤
+│ Risk assessment     │ 0.5   │
+└─────────────────────┴───────┘
+
+\av{check also harms and lilika's proposals for how to put workpackages ...}
 
 \subsection{Justification}
 % Discuss the choice for the type of personnel (PhD or post-doc) and possibly non-scientific staff. Refrain from giving the name of the intended personnel in so far as you already have a candidate in mind.
